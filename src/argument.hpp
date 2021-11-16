@@ -88,6 +88,16 @@ namespace mtlpp
         Bool2    = 54,
         Bool3    = 55,
         Bool4    = 56,
+
+        Long     = 81,
+        Long2    = 82,
+        Long3    = 83,
+        Long4    = 84,
+
+        ULong    = 85,
+        ULong2   = 86,
+        ULong3   = 87,
+        ULong4   = 88,
     }
     MTLPP_AVAILABLE(10_11, 8_0);
 
@@ -148,6 +158,23 @@ namespace mtlpp
     }
     MTLPP_AVAILABLE(10_11, 8_0);
 
+    class PointerType : public ns::Object
+    {
+    public:
+        PointerType();
+        PointerType(const ns::Handle& handle) : ns::Object(handle) { }
+
+        uint32_t        GetAlignment() const;
+        uint32_t        GetDataSize() const;
+        DataType        GetElementType() const;
+        ArgumentAccess  GetAccess() const;
+        bool            GetElementIsArgumentBuffer() const;
+
+        ArrayType       GetElementArrayType() const;
+        StructType      GetElementStructType() const;
+    }
+    MTLPP_AVAILABLE(10_13, 11_0);
+
     class Argument : public ns::Object
     {
     public:
@@ -165,6 +192,7 @@ namespace mtlpp
         uint32_t       GetBufferDataSize() const;
         DataType       GetBufferDataType() const;
         StructType     GetBufferStructType() const;
+        PointerType    GetBufferPointerType() const;
 
         uint32_t       GetThreadgroupMemoryAlignment() const;
         uint32_t       GetThreadgroupMemoryDataSize() const;

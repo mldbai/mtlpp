@@ -95,6 +95,54 @@ namespace mtlpp
         return ns::Handle{ (__bridge void*)[(__bridge MTLArrayType*)m_ptr elementArrayType] };
     }
 
+    PointerType::PointerType() :
+        ns::Object(ns::Handle{ (__bridge void*)[[MTLPointerType alloc] init] })
+    {
+
+    }
+
+    uint32_t PointerType::GetAlignment() const
+    {
+        Validate();
+        return uint32_t([(__bridge MTLPointerType *)m_ptr alignment]);
+    }
+
+    uint32_t PointerType::GetDataSize() const
+    {
+        Validate();
+        return uint32_t([(__bridge MTLPointerType *)m_ptr dataSize]);
+    }
+
+    DataType PointerType::GetElementType() const
+    {
+        Validate();
+        return DataType([(__bridge MTLPointerType *)m_ptr elementType]);
+    }
+
+    ArgumentAccess PointerType::GetAccess() const
+    {
+        Validate();
+        return ArgumentAccess([(__bridge MTLPointerType *)m_ptr access]);
+    }
+
+    bool PointerType::GetElementIsArgumentBuffer() const
+    {
+        Validate();
+        return bool([(__bridge MTLPointerType *)m_ptr elementIsArgumentBuffer]);
+    }
+
+    ArrayType PointerType::GetElementArrayType() const
+    {
+        Validate();
+        return ns::Handle{ (__bridge void *)[(__bridge MTLPointerType *)m_ptr elementArrayType]};
+    }
+
+    StructType PointerType::GetElementStructType() const
+    {
+        Validate();
+        return ns::Handle{ (__bridge void *)[(__bridge MTLPointerType *)m_ptr elementStructType]};
+    }
+
     Argument::Argument() :
         ns::Object(ns::Handle{ (__bridge void*)[[MTLArgument alloc] init] })
     {
@@ -152,6 +200,12 @@ namespace mtlpp
     {
         Validate();
         return StructType(ns::Handle { (__bridge void*)[(__bridge MTLArgument*)m_ptr bufferStructType] });
+    }
+
+    PointerType Argument::GetBufferPointerType() const
+    {
+        Validate();
+        return PointerType(ns::Handle { (__bridge void*)[(__bridge MTLArgument*)m_ptr bufferPointerType] });
     }
 
     uint32_t Argument::GetThreadgroupMemoryAlignment() const

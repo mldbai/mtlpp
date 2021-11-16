@@ -13,6 +13,12 @@ namespace mtlpp
     {
     }
 
+    ns::Array<Argument> ComputePipelineReflection::GetArguments() const
+    {
+        Validate();
+        return ns::Handle { (__bridge void*)[(__bridge MTLComputePipelineReflection*)m_ptr arguments] };        
+    }
+
     ComputePipelineDescriptor::ComputePipelineDescriptor() :
         ns::Object(ns::Handle{ (__bridge void*)[[MTLComputePipelineDescriptor alloc] init] })
     {
