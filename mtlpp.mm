@@ -651,6 +651,12 @@ namespace mtlpp
         return ns::Handle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr computeCommandEncoder] };
     }
 
+    ComputeCommandEncoder CommandBuffer::ComputeCommandEncoder(DispatchType dispatchType)
+    {
+        Validate();
+        return ns::Handle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr computeCommandEncoderWithDispatchType:(MTLDispatchType)dispatchType] };
+    }
+
     ParallelRenderCommandEncoder CommandBuffer::ParallelRenderCommandEncoder(const RenderPassDescriptor& renderPassDescriptor)
     {
         Validate();
@@ -1043,6 +1049,12 @@ namespace mtlpp
     {
         Validate();
         return uint32_t([(__bridge id<MTLComputePipelineState>)m_ptr threadExecutionWidth]);
+    }
+
+    uint32_t ComputePipelineState::GetStaticThreadgroupMemoryLength() const
+    {
+        Validate();
+        return uint32_t([(__bridge id<MTLComputePipelineState>)m_ptr staticThreadgroupMemoryLength]);
     }
 }
 

@@ -95,4 +95,10 @@ namespace mtlpp
         Validate();
         return uint32_t([(__bridge id<MTLComputePipelineState>)m_ptr threadExecutionWidth]);
     }
+
+    uint32_t ComputePipelineState::GetStaticThreadgroupMemoryLength() const
+    {
+        Validate();
+        return uint32_t([(__bridge id<MTLComputePipelineState>)m_ptr staticThreadgroupMemoryLength]);
+    }
 }

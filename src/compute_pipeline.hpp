@@ -51,6 +51,7 @@ namespace mtlpp
         Device   GetDevice() const;
         uint32_t GetMaxTotalThreadsPerThreadgroup() const;
         uint32_t GetThreadExecutionWidth() const;
+        uint32_t GetStaticThreadgroupMemoryLength() const;
     }
     MTLPP_AVAILABLE(10_11, 8_0);
 }

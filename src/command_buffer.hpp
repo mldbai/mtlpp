@@ -45,6 +45,13 @@ namespace mtlpp
     }
     MTLPP_AVAILABLE(10_11, 8_0);
 
+    enum class DispatchType
+    {
+        Serial           = 0,
+        Concurrent       = 1,
+    }
+    MTLPP_AVAILABLE(10_11, 8_0);
+
     class CommandBuffer : public ns::Object
     {
     public:
@@ -75,7 +82,8 @@ namespace mtlpp
         void WaitUntilCompleted();
         BlitCommandEncoder BlitCommandEncoder();
         RenderCommandEncoder RenderCommandEncoder(const RenderPassDescriptor& renderPassDescriptor);
-        ComputeCommandEncoder ComputeCommandEncoder();
+        class ComputeCommandEncoder ComputeCommandEncoder();
+        class ComputeCommandEncoder ComputeCommandEncoder(DispatchType dispatchType);
         ParallelRenderCommandEncoder ParallelRenderCommandEncoder(const RenderPassDescriptor& renderPassDescriptor);
     }
     MTLPP_AVAILABLE(10_11, 8_0);

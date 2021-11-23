@@ -179,6 +179,12 @@ namespace mtlpp
         return ns::Handle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr computeCommandEncoder] };
     }
 
+    ComputeCommandEncoder CommandBuffer::ComputeCommandEncoder(DispatchType dispatchType)
+    {
+        Validate();
+        return ns::Handle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr computeCommandEncoderWithDispatchType:(MTLDispatchType)dispatchType] };
+    }
+
     ParallelRenderCommandEncoder CommandBuffer::ParallelRenderCommandEncoder(const RenderPassDescriptor& renderPassDescriptor)
     {
         Validate();
