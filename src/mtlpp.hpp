@@ -25,3 +25,4 @@
 #include "sampler.hpp"
 #include "texture.hpp"
 #include "heap.hpp"
+#include "capture.hpp"

@@ -8,6 +8,7 @@
 #include <Foundation/NSString.h>
 #include <Foundation/NSError.h>
 #include <Foundation/NSArray.h>
+#include <Foundation/NSURL.h>
 #include <cstring>
 
 namespace ns
@@ -98,6 +99,17 @@ namespace ns
         Validate();
         return uint32_t([(__bridge NSString*)m_ptr length]);
     }
+
+    URL::URL(const char * cstr) :
+        Object(Handle{ (__bridge void*)[NSURL fileURLWithPath:[NSString stringWithUTF8String:cstr]] })
+    {
+    }
+
+    //const char* URL::GetCStr() const
+    //{
+    //    Validate();
+    //    return [(__bridge NSURL*)m_ptr cStringUsingEncoding:NSUTF8StringEncoding];
+    //}
 
     Error::Error() :
         Object(Handle{ (__bridge void*)[[NSError alloc] init] })

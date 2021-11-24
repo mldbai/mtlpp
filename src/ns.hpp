@@ -115,6 +115,17 @@ namespace ns
         uint32_t    GetLength() const;
     };
 
+    class URL : public Object
+    {
+    public:
+        URL() { }
+        URL(const Handle& handle) : Object(handle) { }
+        URL(const char* cstr);
+
+        const char* GetCStr() const;
+        uint32_t    GetLength() const;
+    };
+
     class Error : public Object
     {
     public:
