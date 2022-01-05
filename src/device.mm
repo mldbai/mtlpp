@@ -105,7 +105,7 @@ namespace mtlpp
 
     SizeAndAlign Device::HeapTextureSizeAndAlign(const TextureDescriptor& desc)
     {
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13, 10_0)
         MTLSizeAndAlign mtlSizeAndAlign = [(__bridge id<MTLDevice>)m_ptr heapTextureSizeAndAlignWithDescriptor:(__bridge MTLTextureDescriptor*)desc.GetPtr()];
         return SizeAndAlign{ uint32_t(mtlSizeAndAlign.size), uint32_t(mtlSizeAndAlign.align) };
 #else
@@ -115,7 +115,7 @@ namespace mtlpp
 
     SizeAndAlign Device::HeapBufferSizeAndAlign(uint32_t length, ResourceOptions options)
     {
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13, 10_0)
         MTLSizeAndAlign mtlSizeAndAlign = [(__bridge id<MTLDevice>)m_ptr heapBufferSizeAndAlignWithLength:length options:MTLResourceOptions(options)];
         return SizeAndAlign{ uint32_t(mtlSizeAndAlign.size), uint32_t(mtlSizeAndAlign.align) };
 #else
@@ -125,7 +125,7 @@ namespace mtlpp
 
     Heap Device::NewHeap(const HeapDescriptor& descriptor)
     {
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13, 10_0)
         return ns::Handle{ (__bridge void*)[(__bridge id<MTLDevice>)m_ptr newHeapWithDescriptor:(__bridge MTLHeapDescriptor*)descriptor.GetPtr()] };
 #else
         return ns::Handle{ nullptr };
@@ -438,7 +438,7 @@ namespace mtlpp
     Fence Device::NewFence()
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13, 10_0)
         return ns::Handle{ (__bridge void*)[(__bridge id<MTLDevice>)m_ptr newFence] };
 #else
         return ns::Handle{ nullptr };

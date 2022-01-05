@@ -4,16 +4,21 @@
  */
 
 #include "heap.hpp"
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13, 10_0)
 #   include <Metal/MTLHeap.h>
 #endif
 
 namespace mtlpp
 {
+    HeapDescriptor::HeapDescriptor() :
+        ns::Object(ns::Handle{ (__bridge void*)[[MTLHeapDescriptor alloc] init] })
+    {
+    }
+
     uint32_t HeapDescriptor::GetSize() const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return uint32_t([(__bridge MTLHeapDescriptor*)m_ptr size]);
 #else
         return 0;
@@ -24,7 +29,7 @@ namespace mtlpp
     StorageMode HeapDescriptor::GetStorageMode() const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return StorageMode([(__bridge MTLHeapDescriptor*)m_ptr storageMode]);
 #else
         return StorageMode(0);
@@ -35,7 +40,7 @@ namespace mtlpp
     CpuCacheMode HeapDescriptor::GetCpuCacheMode() const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return CpuCacheMode([(__bridge MTLHeapDescriptor*)m_ptr cpuCacheMode]);
 #else
         return CpuCacheMode(0);
@@ -46,7 +51,7 @@ namespace mtlpp
     void HeapDescriptor::SetSize(uint32_t size) const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         [(__bridge MTLHeapDescriptor*)m_ptr setSize:size];
 #endif
 
@@ -55,7 +60,7 @@ namespace mtlpp
     void HeapDescriptor::SetStorageMode(StorageMode storageMode) const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         [(__bridge MTLHeapDescriptor*)m_ptr setStorageMode:MTLStorageMode(storageMode)];
 #endif
 
@@ -64,7 +69,7 @@ namespace mtlpp
     void HeapDescriptor::SetCpuCacheMode(CpuCacheMode cpuCacheMode) const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         [(__bridge MTLHeapDescriptor*)m_ptr setCpuCacheMode:MTLCPUCacheMode(cpuCacheMode)];
 #endif
 
@@ -73,7 +78,7 @@ namespace mtlpp
     ns::String Heap::GetLabel() const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return ns::Handle{ (__bridge void*)[(__bridge id<MTLHeap>)m_ptr label] };
 #else
         return ns::Handle{ nullptr };
@@ -84,7 +89,7 @@ namespace mtlpp
     Device Heap::GetDevice() const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return ns::Handle{ (__bridge void*)[(__bridge id<MTLHeap>)m_ptr device] };
 #else
         return ns::Handle{ nullptr };
@@ -95,7 +100,7 @@ namespace mtlpp
     StorageMode Heap::GetStorageMode() const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return StorageMode([(__bridge id<MTLHeap>)m_ptr storageMode]);
 #else
         return StorageMode(0);
@@ -106,7 +111,7 @@ namespace mtlpp
     CpuCacheMode Heap::GetCpuCacheMode() const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return CpuCacheMode([(__bridge id<MTLHeap>)m_ptr cpuCacheMode]);
 #else
         return CpuCacheMode(0);
@@ -117,7 +122,7 @@ namespace mtlpp
     uint32_t Heap::GetSize() const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return uint32_t([(__bridge id<MTLHeap>)m_ptr size]);
 #else
         return 0;
@@ -128,7 +133,7 @@ namespace mtlpp
     uint32_t Heap::GetUsedSize() const
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return uint32_t([(__bridge id<MTLHeap>)m_ptr usedSize]);
 #else
         return 0;
@@ -139,7 +144,7 @@ namespace mtlpp
     void Heap::SetLabel(const ns::String& label)
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         [(__bridge id<MTLHeap>)m_ptr setLabel:(__bridge NSString*)label.GetPtr()];
 #endif
 
@@ -148,7 +153,7 @@ namespace mtlpp
     uint32_t Heap::MaxAvailableSizeWithAlignment(uint32_t alignment)
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return uint32_t([(__bridge id<MTLHeap>)m_ptr maxAvailableSizeWithAlignment:alignment]);
 #else
         return 0;
@@ -159,7 +164,7 @@ namespace mtlpp
     Buffer Heap::NewBuffer(uint32_t length, ResourceOptions options)
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return ns::Handle{ (__bridge void*)[(__bridge id<MTLHeap>)m_ptr newBufferWithLength:length options:MTLResourceOptions(options)] };
 #else
         return ns::Handle{ nullptr };
@@ -170,7 +175,7 @@ namespace mtlpp
     Texture Heap::NewTexture(const TextureDescriptor& desc)
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return ns::Handle{ (__bridge void*)[(__bridge id<MTLHeap>)m_ptr newTextureWithDescriptor:(__bridge MTLTextureDescriptor*)desc.GetPtr()] };
 #else
         return ns::Handle{ nullptr };
@@ -181,7 +186,7 @@ namespace mtlpp
     PurgeableState Heap::SetPurgeableState(PurgeableState state)
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13,10_0)
         return PurgeableState([(__bridge id<MTLHeap>)m_ptr setPurgeableState:MTLPurgeableState(state)]);
 #else
         return PurgeableState(0);

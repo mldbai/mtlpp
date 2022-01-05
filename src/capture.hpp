@@ -18,18 +18,6 @@ namespace mtlpp
     }
     MTLPP_AVAILABLE(11_0, 8_0);
 
-    class CaptureDescriptor : public ns::Object
-    {
-    public:
-        CaptureDescriptor() { }
-        CaptureDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
-
-        void SetCaptureObject(const ns::Object & obj);
-        void SetDestination(CaptureDestination dest);
-        void SetOutputURL(const ns::URL & url);
-    }
-    MTLPP_AVAILABLE(NA, 10_0);
-
     class CaptureScope : public ns::Object
     {
     public:
@@ -42,6 +30,21 @@ namespace mtlpp
         Device    GetDevice() const;
         CommandQueue GetCommandQueue() const;
         void SetLabel(const ns::String& label);
+    }
+    MTLPP_AVAILABLE(NA, 10_0);
+
+    class CaptureDescriptor : public ns::Object
+    {
+    public:
+        CaptureDescriptor() { }
+        CaptureDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+
+        void SetCaptureObject(const ns::Object & obj);
+        void SetCaptureDevice(const Device & device);
+        void SetCaptureCommandQueue(const CommandQueue & commandQueue);
+        void SetCaptureScope(const CaptureScope & captureScope);
+        void SetDestination(CaptureDestination dest);
+        void SetOutputURL(const ns::URL & url);
     }
     MTLPP_AVAILABLE(NA, 10_0);
 
@@ -62,6 +65,7 @@ namespace mtlpp
         void SetDefaultCaptureScope(const CaptureScope & captureScope);
 
         bool StartCapture(const CaptureDescriptor & descriptor, ns::Error * error = nullptr);
+        void StartCapture(const Device & device);
         void StopCapture();
         bool IsCapturing() const;
     }

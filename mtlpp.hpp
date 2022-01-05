@@ -64,6 +64,9 @@
 #ifndef __DARWIN_ALIAS_STARTING_MAC___MAC_10_12
 #   define __DARWIN_ALIAS_STARTING_MAC___MAC_10_12(x)
 #endif
+#ifndef __DARWIN_ALIAS_STARTING_MAC___MAC_10_13
+#   define __DARWIN_ALIAS_STARTING_MAC___MAC_10_13(x)
+#endif
 #ifndef __DARWIN_ALIAS_STARTING_IPHONE___IPHONE_8_0
 #   define __DARWIN_ALIAS_STARTING_IPHONE___IPHONE_8_0(x)
 #endif
@@ -2702,6 +2705,7 @@ namespace mtlpp
     class HeapDescriptor : public ns::Object
     {
     public:
+        HeapDescriptor();
         HeapDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
 
         uint32_t     GetSize() const;
@@ -2717,6 +2721,7 @@ namespace mtlpp
     class Heap : public ns::Object
     {
     public:
+        Heap() {}
         Heap(const ns::Handle& handle) : ns::Object(handle) { }
 
         ns::String   GetLabel() const;
@@ -2759,18 +2764,6 @@ namespace mtlpp
     }
     MTLPP_AVAILABLE(11_0, 8_0);
 
-    class CaptureDescriptor : public ns::Object
-    {
-    public:
-        CaptureDescriptor() { }
-        CaptureDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
-
-        void SetCaptureObject(const ns::Object & obj);
-        void SetDestination(CaptureDestination dest);
-        void SetOutputURL(const ns::URL & url);
-    }
-    MTLPP_AVAILABLE(NA, 10_0);
-
     class CaptureScope : public ns::Object
     {
     public:
@@ -2783,6 +2776,21 @@ namespace mtlpp
         Device    GetDevice() const;
         CommandQueue GetCommandQueue() const;
         void SetLabel(const ns::String& label);
+    }
+    MTLPP_AVAILABLE(NA, 10_0);
+
+    class CaptureDescriptor : public ns::Object
+    {
+    public:
+        CaptureDescriptor() { }
+        CaptureDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+
+        void SetCaptureObject(const ns::Object & obj);
+        void SetCaptureDevice(const Device & device);
+        void SetCaptureCommandQueue(const CommandQueue & commandQueue);
+        void SetCaptureScope(const CaptureScope & captureScope);
+        void SetDestination(CaptureDestination dest);
+        void SetOutputURL(const ns::URL & url);
     }
     MTLPP_AVAILABLE(NA, 10_0);
 
@@ -2803,6 +2811,7 @@ namespace mtlpp
         void SetDefaultCaptureScope(const CaptureScope & captureScope);
 
         bool StartCapture(const CaptureDescriptor & descriptor, ns::Error * error = nullptr);
+        void StartCapture(const Device & device);
         void StopCapture();
         bool IsCapturing() const;
     }

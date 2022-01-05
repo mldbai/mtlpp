@@ -158,14 +158,14 @@ namespace mtlpp
     void ComputeCommandEncoder::UpdateFence(const Fence& fence)
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13, 10_0)
         [(__bridge id<MTLComputeCommandEncoder>)m_ptr updateFence:(__bridge id<MTLFence>)fence.GetPtr()];
 #endif
     }
 
     void ComputeCommandEncoder::WaitForFence(const Fence& fence)
     {
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13, 10_0)
         [(__bridge id<MTLComputeCommandEncoder>)m_ptr waitForFence:(__bridge id<MTLFence>)fence.GetPtr()];
 #endif
     }

@@ -440,7 +440,7 @@ namespace mtlpp
     void RenderCommandEncoder::UpdateFence(const Fence& fence, RenderStages afterStages)
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13, 10_0)
         [(__bridge id<MTLRenderCommandEncoder>)m_ptr updateFence:(__bridge id<MTLFence>)fence.GetPtr() afterStages:MTLRenderStages(afterStages)];
 #endif
     }
@@ -448,7 +448,7 @@ namespace mtlpp
     void RenderCommandEncoder::WaitForFence(const Fence& fence, RenderStages beforeStages)
     {
         Validate();
-#if MTLPP_IS_AVAILABLE_IOS(10_0)
+#if MTLPP_IS_AVAILABLE(10_13, 10_0)
         [(__bridge id<MTLRenderCommandEncoder>)m_ptr waitForFence:(__bridge id<MTLFence>)fence.GetPtr() beforeStages:MTLRenderStages(beforeStages)];
 #endif
     }

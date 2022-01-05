@@ -18,6 +18,7 @@ namespace mtlpp
     class HeapDescriptor : public ns::Object
     {
     public:
+        HeapDescriptor();
         HeapDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
 
         uint32_t     GetSize() const;
@@ -33,6 +34,7 @@ namespace mtlpp
     class Heap : public ns::Object
     {
     public:
+        Heap() {}
         Heap(const ns::Handle& handle) : ns::Object(handle) { }
 
         ns::String   GetLabel() const;

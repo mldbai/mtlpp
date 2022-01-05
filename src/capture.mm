@@ -7,6 +7,7 @@
 #include <Metal/MTLCaptureManager.h>
 #include <Metal/MTLCaptureScope.h>
 #include <Metal/MTLDevice.h>
+#include <iostream>
 
 namespace mtlpp
 {
@@ -14,7 +15,28 @@ namespace mtlpp
     void CaptureDescriptor::SetCaptureObject(const ns::Object & obj)
     {
         Validate();
-        [(__bridge MTLCaptureDescriptor *)m_ptr setCaptureObject:(__bridge NSObject*)obj.GetPtr()];
+        std::cerr << "obj.GetPtr() = " << obj.GetPtr() << std::endl;
+
+        //[(__bridge MTLCaptureDescriptor *)m_ptr setCaptureObject:(__bridge NSObject*)obj.GetPtr()];
+        [(__bridge MTLCaptureDescriptor *)m_ptr setCaptureObject:(__bridge id<NSObject>)obj.GetPtr()];
+    }
+
+    void CaptureDescriptor::SetCaptureDevice(const Device & device)
+    {
+        Validate();
+        [(__bridge MTLCaptureDescriptor *)m_ptr setCaptureObject:(__bridge id<MTLDevice>)device.GetPtr()];
+    }
+
+    void CaptureDescriptor::SetCaptureCommandQueue(const CommandQueue & commandQueue)
+    {
+        Validate();
+        [(__bridge MTLCaptureDescriptor *)m_ptr setCaptureObject:(__bridge id<MTLCommandQueue>)commandQueue.GetPtr()];
+    }
+
+    void CaptureDescriptor::SetCaptureScope(const CaptureScope & captureScope)
+    {
+        Validate();
+        [(__bridge MTLCaptureDescriptor *)m_ptr setCaptureObject:(__bridge id<MTLCaptureScope>)captureScope.GetPtr()];
     }
 
     void CaptureDescriptor::SetDestination(CaptureDestination dest)
@@ -110,6 +132,12 @@ namespace mtlpp
         }  
 
         return res;
+    }
+
+    void CaptureManager::StartCapture(const Device & device)
+    {
+        Validate();
+        [(__bridge MTLCaptureManager *)m_ptr startCaptureWithDevice:(__bridge id<MTLDevice>)device.GetPtr()];
     }
 
     void CaptureManager::StopCapture()
