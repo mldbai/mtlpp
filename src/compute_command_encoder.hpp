@@ -18,7 +18,7 @@ namespace mtlpp
     {
     public:
         ComputeCommandEncoder() { }
-        ComputeCommandEncoder(const ns::Handle& handle) : CommandEncoder(handle) { }
+        ComputeCommandEncoder(const ns::RetainedHandle& handle) : CommandEncoder(handle) { }
 
         void SetComputePipelineState(const ComputePipelineState& state);
         void SetBytes(const void* data, uint32_t length, uint32_t index);

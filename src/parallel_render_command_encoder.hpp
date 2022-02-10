@@ -18,7 +18,7 @@ namespace mtlpp
     {
     public:
         ParallelRenderCommandEncoder() { }
-        ParallelRenderCommandEncoder(const ns::Handle& handle) : ns::Object(handle) { }
+        ParallelRenderCommandEncoder(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         RenderCommandEncoder GetRenderCommandEncoder();
 

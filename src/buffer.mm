@@ -6,9 +6,28 @@
 #include "buffer.hpp"
 #include "texture.hpp"
 #include <Metal/MTLBuffer.h>
+#include <iostream>
 
 namespace mtlpp
 {
+#if 0
+    Buffer::~Buffer()
+    {
+#if 1
+        using namespace std;
+        if (*this && GetLabel()) {
+            cerr << "freeing buffer " << GetLabel().GetCStr() << " of length " << GetLength() << " with " << GetRetainCount() << " references " << m_ptr << endl;
+        }
+        else if (*this) {
+            cerr << "freeing buffer of length " << GetLength() << " with " << GetRetainCount() << " references " << m_ptr << endl;            
+        }
+        else {
+            cerr << "freeing null buffer " << m_ptr << endl;
+        }
+#endif
+    }
+#endif
+
     uint32_t Buffer::GetLength() const
     {
         Validate();

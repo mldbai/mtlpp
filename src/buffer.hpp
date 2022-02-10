@@ -18,7 +18,9 @@ namespace mtlpp
     {
     public:
         Buffer() { }
-        Buffer(const ns::Handle& handle) : Resource(handle) { }
+        Buffer(const ns::RetainedHandle& handle) : Resource(handle) { }
+
+        //virtual ~Buffer();
 
         uint32_t GetLength() const;
         void*    GetContents();

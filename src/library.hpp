@@ -26,7 +26,7 @@ namespace mtlpp
     {
     public:
         VertexAttribute();
-        VertexAttribute(const ns::Handle& handle) : ns::Object(handle) { }
+        VertexAttribute(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String   GetName() const;
         uint32_t     GetAttributeIndex() const;
@@ -41,7 +41,7 @@ namespace mtlpp
     {
     public:
         Attribute();
-        Attribute(const ns::Handle& handle) : ns::Object(handle) { }
+        Attribute(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String   GetName() const;
         uint32_t     GetAttributeIndex() const;
@@ -64,7 +64,7 @@ namespace mtlpp
     {
     public:
         FunctionConstant();
-        FunctionConstant(const ns::Handle& handle) : ns::Object(handle) { }
+        FunctionConstant(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetName() const;
         DataType   GetType() const;
@@ -77,7 +77,7 @@ namespace mtlpp
     {
     public:
         Function() { }
-        Function(const ns::Handle& handle) : ns::Object(handle) { }
+        Function(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String                                   GetLabel() const MTLPP_AVAILABLE(10_12, 10_0);
         Device                                       GetDevice() const;
@@ -105,14 +105,15 @@ namespace mtlpp
     {
     public:
         CompileOptions();
-        CompileOptions(const ns::Handle& handle) : ns::Object(handle) { }
+        CompileOptions(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::Dictionary<ns::String, ns::String> GetPreprocessorMacros() const;
         bool                                   IsFastMathEnabled() const;
         LanguageVersion                        GetLanguageVersion() const MTLPP_AVAILABLE(10_11, 9_0);
 
         void SetFastMathEnabled(bool fastMathEnabled);
-        void SetFastMathEnabled(LanguageVersion languageVersion);
+        void SetLanguageVersion(LanguageVersion languageVersion);
+        void SetPreprocessorMacros(size_t numMacros, const char * macros[][2]);
     }
     MTLPP_AVAILABLE(10_11, 8_0);
 
@@ -139,7 +140,7 @@ namespace mtlpp
     {
     public:
         Library() { }
-        Library(const ns::Handle& handle) : ns::Object(handle) { }
+        Library(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String            GetLabel() const;
         Device                GetDevice() const;

@@ -107,7 +107,7 @@ namespace mtlpp
     {
     public:
         RenderPipelineColorAttachmentDescriptor();
-        RenderPipelineColorAttachmentDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPipelineColorAttachmentDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         PixelFormat     GetPixelFormat() const;
         bool            IsBlendingEnabled() const;
@@ -135,7 +135,7 @@ namespace mtlpp
     {
     public:
         RenderPipelineReflection();
-        RenderPipelineReflection(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPipelineReflection(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         const ns::Array<Argument> GetVertexArguments() const;
         const ns::Array<Argument> GetFragmentArguments() const;
@@ -146,7 +146,7 @@ namespace mtlpp
     {
     public:
         RenderPipelineDescriptor();
-        RenderPipelineDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPipelineDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String                                         GetLabel() const;
         Function                                           GetVertexFunction() const;
@@ -196,7 +196,7 @@ namespace mtlpp
     {
     public:
         RenderPipelineState() { }
-        RenderPipelineState(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPipelineState(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetLabel() const;
         Device     GetDevice() const;

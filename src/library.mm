@@ -287,10 +287,24 @@ namespace mtlpp
         [(__bridge MTLCompileOptions*)m_ptr setFastMathEnabled:fastMathEnabled];
     }
 
-    void CompileOptions::SetFastMathEnabled(LanguageVersion languageVersion)
+    void CompileOptions::SetLanguageVersion(LanguageVersion languageVersion)
     {
         Validate();
         [(__bridge MTLCompileOptions*)m_ptr setFastMathEnabled:MTLLanguageVersion(languageVersion)];
+    }
+
+    void CompileOptions::SetPreprocessorMacros(size_t numMacros, const char * macros[][2])
+    {
+        Validate();
+        id keys[numMacros];
+        id values[numMacros];
+        for (size_t i = 0;  i < numMacros;  ++i) {
+            keys[i] = [[NSString alloc] initWithCString:macros[i][0]];
+            values[i] = [[NSString alloc] initWithCString:macros[i][1]];
+        }
+        NSDictionary<NSString *, NSString *> * macroDict
+            = [[NSDictionary<NSString *, NSString *> alloc] initWithObjects:values forKeys:keys count:numMacros];
+        [(__bridge MTLCompileOptions*)m_ptr setPreprocessorMacros:macroDict];
     }
 
     ns::String Library::GetLabel() const
@@ -317,13 +331,13 @@ namespace mtlpp
         return ns::Handle{ (__bridge void*)[(__bridge id<MTLLibrary>)m_ptr newFunctionWithName:(__bridge NSString*)functionName.GetPtr()] };
     }
 
-    Function Library::NewFunction(const ns::String& functionName, const FunctionConstantValues& constantValues, ns::Error* error)
+    Function Library::NewFunction(const ns::String& functionName, const FunctionConstantValues& constantValues, ns::Error * error)
     {
         Validate();
 #if MTLPP_IS_AVAILABLE(10_12, 10_0)
         // Error
-        NSError* nsError = NULL;
-        NSError** nsErrorPtr = error ? &nsError : nullptr;
+        __autoreleasing NSError* nsError = NULL;
+        NSError* __autoreleasing * nsErrorPtr = error ? &nsError : nullptr;
 
         id<MTLFunction> function = [(__bridge id<MTLLibrary>)m_ptr newFunctionWithName:(__bridge NSString*)functionName.GetPtr()
                                                                         constantValues:(__bridge MTLFunctionConstantValues*)constantValues.GetPtr()

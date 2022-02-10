@@ -16,7 +16,7 @@ namespace mtlpp
     {
     public:
         CommandEncoder() { }
-        CommandEncoder(const ns::Handle& handle) : ns::Object(handle) { }
+        CommandEncoder(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         Device     GetDevice() const;
         ns::String GetLabel() const;

@@ -9,10 +9,28 @@
 
 namespace ns
 {
-    struct Handle
+    struct RetainedHandleHolder
     {
         const void* ptr;
     };
+
+    struct HandleHolder: public RetainedHandleHolder {
+        HandleHolder(const void * ptr = nullptr)
+            : RetainedHandleHolder { retain(ptr) }
+        {
+        }
+
+        HandleHolder(RetainedHandleHolder && other)
+            : RetainedHandleHolder{ other.ptr }
+        {
+        }
+
+        static const void * retain(const void * ptr);
+    };
+
+    using Handle = HandleHolder;
+    using RetainedHandle = RetainedHandleHolder;
+    using RetainedHandle2 = RetainedHandleHolder;
 
     class Object
     {
@@ -21,9 +39,11 @@ namespace ns
 
         inline operator bool() const { return m_ptr != nullptr; }
 
+        int GetRetainCount() const;
+
     protected:
         Object();
-        Object(const Handle& handle);
+        Object(const RetainedHandle& handle);
         Object(const Object& rhs);
 #if MTLPP_CONFIG_RVALUE_REFERENCES
         Object(Object&& rhs);
@@ -142,4 +162,6 @@ namespace ns
         //@property (nullable, readonly, strong) id recoveryAttempter;
         String   GetHelpAnchor() const;
     };
+
+    void GarbageCollectExhaustively();
 }

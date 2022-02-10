@@ -26,7 +26,7 @@ namespace mtlpp
     {
     public:
         BlitCommandEncoder() { }
-        BlitCommandEncoder(const ns::Handle& handle) : CommandEncoder(handle) { }
+        BlitCommandEncoder(const ns::RetainedHandle& handle) : CommandEncoder(handle) { }
 
         void Synchronize(const Resource& resource) MTLPP_AVAILABLE_MAC(10_11);
         void Synchronize(const Texture& texture, uint32_t slice, uint32_t level) MTLPP_AVAILABLE_MAC(10_11);

@@ -163,32 +163,32 @@ namespace mtlpp
     BlitCommandEncoder CommandBuffer::BlitCommandEncoder()
     {
         Validate();
-        return ns::Handle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr blitCommandEncoder] };
+        return ns::RetainedHandle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr blitCommandEncoder] };
     }
 
     RenderCommandEncoder CommandBuffer::RenderCommandEncoder(const RenderPassDescriptor& renderPassDescriptor)
     {
         Validate();
         MTLRenderPassDescriptor* mtlRenderPassDescriptor = (__bridge MTLRenderPassDescriptor*)renderPassDescriptor.GetPtr();
-        return ns::Handle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr renderCommandEncoderWithDescriptor:mtlRenderPassDescriptor] };
+        return ns::RetainedHandle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr renderCommandEncoderWithDescriptor:mtlRenderPassDescriptor] };
     }
 
     ComputeCommandEncoder CommandBuffer::ComputeCommandEncoder()
     {
         Validate();
-        return ns::Handle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr computeCommandEncoder] };
+        return ns::RetainedHandle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr computeCommandEncoder] };
     }
 
     ComputeCommandEncoder CommandBuffer::ComputeCommandEncoder(DispatchType dispatchType)
     {
         Validate();
-        return ns::Handle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr computeCommandEncoderWithDispatchType:(MTLDispatchType)dispatchType] };
+        return ns::RetainedHandle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr computeCommandEncoderWithDispatchType:(MTLDispatchType)dispatchType] };
     }
 
     ParallelRenderCommandEncoder CommandBuffer::ParallelRenderCommandEncoder(const RenderPassDescriptor& renderPassDescriptor)
     {
         Validate();
         MTLRenderPassDescriptor* mtlRenderPassDescriptor = (__bridge MTLRenderPassDescriptor*)renderPassDescriptor.GetPtr();
-        return ns::Handle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr parallelRenderCommandEncoderWithDescriptor:mtlRenderPassDescriptor] };
+        return ns::RetainedHandle{ (__bridge void*)[(__bridge id<MTLCommandBuffer>)m_ptr parallelRenderCommandEncoderWithDescriptor:mtlRenderPassDescriptor] };
     }
 }

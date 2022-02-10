@@ -14,7 +14,7 @@ namespace mtlpp
     {
     public:
         Drawable() { }
-        Drawable(const ns::Handle& handle) : ns::Object(handle) { }
+        Drawable(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         double   GetPresentedTime() const MTLPP_AVAILABLE_IOS(10_3);
         uint64_t GetDrawableID() const MTLPP_AVAILABLE_IOS(10_3);

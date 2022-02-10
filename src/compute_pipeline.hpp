@@ -16,7 +16,7 @@ namespace mtlpp
     {
     public:
         ComputePipelineReflection();
-        ComputePipelineReflection(const ns::Handle& handle) : ns::Object(handle) { }
+        ComputePipelineReflection(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::Array<Argument> GetArguments() const;
     }
@@ -26,7 +26,7 @@ namespace mtlpp
     {
     public:
         ComputePipelineDescriptor();
-        ComputePipelineDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        ComputePipelineDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String                 GetLabel() const;
         Function                   GetComputeFunction() const;
@@ -46,7 +46,7 @@ namespace mtlpp
     {
     public:
         ComputePipelineState() { }
-        ComputePipelineState(const ns::Handle& handle) : ns::Object(handle) { }
+        ComputePipelineState(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         Device   GetDevice() const;
         uint32_t GetMaxTotalThreadsPerThreadgroup() const;

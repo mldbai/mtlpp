@@ -22,7 +22,7 @@ namespace mtlpp
     {
     public:
         CaptureScope() { }
-        CaptureScope(const ns::Handle& handle) : ns::Object(handle) { }
+        CaptureScope(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         void Begin();
         void End();
@@ -37,7 +37,7 @@ namespace mtlpp
     {
     public:
         CaptureDescriptor() { }
-        CaptureDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        CaptureDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         void SetCaptureObject(const ns::Object & obj);
         void SetCaptureDevice(const Device & device);
@@ -52,7 +52,7 @@ namespace mtlpp
     {
     public:
         CaptureManager() { }
-        CaptureManager(const ns::Handle& handle) : ns::Object(handle) { }
+        CaptureManager(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         static CaptureManager GetShared();
 

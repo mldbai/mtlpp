@@ -56,7 +56,7 @@ namespace mtlpp
     {
     public:
         CommandBuffer() { }
-        CommandBuffer(const ns::Handle& handle) : ns::Object(handle) { }
+        CommandBuffer(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         Device              GetDevice() const;
         CommandQueue        GetCommandQueue() const;

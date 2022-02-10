@@ -7,7 +7,6 @@
 #include <Metal/MTLCaptureManager.h>
 #include <Metal/MTLCaptureScope.h>
 #include <Metal/MTLDevice.h>
-#include <iostream>
 
 namespace mtlpp
 {
@@ -15,8 +14,6 @@ namespace mtlpp
     void CaptureDescriptor::SetCaptureObject(const ns::Object & obj)
     {
         Validate();
-        std::cerr << "obj.GetPtr() = " << obj.GetPtr() << std::endl;
-
         //[(__bridge MTLCaptureDescriptor *)m_ptr setCaptureObject:(__bridge NSObject*)obj.GetPtr()];
         [(__bridge MTLCaptureDescriptor *)m_ptr setCaptureObject:(__bridge id<NSObject>)obj.GetPtr()];
     }
@@ -95,19 +92,19 @@ namespace mtlpp
     CaptureScope CaptureManager::MakeCaptureScope(const Device & device)
     {
         Validate();
-        return ns::Handle{  [(__bridge MTLCaptureManager *)m_ptr newCaptureScopeWithDevice:(__bridge id<MTLDevice>)device.GetPtr()] };
+        return ns::Handle{  (__bridge void*)[(__bridge MTLCaptureManager *)m_ptr newCaptureScopeWithDevice:(__bridge id<MTLDevice>)device.GetPtr()] };
     }
 
     CaptureScope CaptureManager::MakeCaptureScope(const CommandQueue & commandQueue)
     {
         Validate();
-        return ns::Handle{  [(__bridge MTLCaptureManager *)m_ptr newCaptureScopeWithCommandQueue:(__bridge id<MTLCommandQueue>)commandQueue.GetPtr()] };
+        return ns::Handle{  (__bridge void*)[(__bridge MTLCaptureManager *)m_ptr newCaptureScopeWithCommandQueue:(__bridge id<MTLCommandQueue>)commandQueue.GetPtr()] };
     }
 
     CaptureScope CaptureManager::GetDefaultCaptureScope() const
     {
         Validate();
-        return ns::Handle{  [(__bridge MTLCaptureManager *)m_ptr defaultCaptureScope] };
+        return ns::Handle{  (__bridge void*)[(__bridge MTLCaptureManager *)m_ptr defaultCaptureScope] };
     }
 
     void CaptureManager::SetDefaultCaptureScope(const CaptureScope & captureScope)
@@ -121,8 +118,8 @@ namespace mtlpp
         Validate();
 
         // Error
-        NSError* nsError = nullptr;
-        NSError** nsErrorPtr = error ? &nsError : nullptr;
+        __autoreleasing NSError* nsError = nullptr;
+        NSError * __autoreleasing * nsErrorPtr = error ? &nsError : nullptr;
 
         bool res = [(__bridge MTLCaptureManager *)m_ptr startCaptureWithDescriptor:(__bridge MTLCaptureDescriptor *)descriptor.GetPtr() error:nsErrorPtr];
         

@@ -19,7 +19,7 @@ namespace mtlpp
     {
     public:
         HeapDescriptor();
-        HeapDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        HeapDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         uint32_t     GetSize() const;
         StorageMode  GetStorageMode() const;
@@ -35,7 +35,7 @@ namespace mtlpp
     {
     public:
         Heap() {}
-        Heap(const ns::Handle& handle) : ns::Object(handle) { }
+        Heap(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String   GetLabel() const;
         Device       GetDevice() const;

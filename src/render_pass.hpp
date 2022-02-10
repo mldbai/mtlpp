@@ -57,7 +57,7 @@ namespace mtlpp
     {
     public:
         RenderPassAttachmentDescriptor();
-        RenderPassAttachmentDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPassAttachmentDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         Texture     GetTexture() const;
         uint32_t    GetLevel() const;
@@ -87,7 +87,7 @@ namespace mtlpp
     {
     public:
         RenderPassColorAttachmentDescriptor();
-        RenderPassColorAttachmentDescriptor(const ns::Handle& handle) : RenderPassAttachmentDescriptor(handle) { }
+        RenderPassColorAttachmentDescriptor(const ns::RetainedHandle& handle) : RenderPassAttachmentDescriptor(handle) { }
 
         ClearColor GetClearColor() const;
 
@@ -99,7 +99,7 @@ namespace mtlpp
     {
     public:
         RenderPassDepthAttachmentDescriptor();
-        RenderPassDepthAttachmentDescriptor(const ns::Handle& handle) : RenderPassAttachmentDescriptor(handle) { }
+        RenderPassDepthAttachmentDescriptor(const ns::RetainedHandle& handle) : RenderPassAttachmentDescriptor(handle) { }
 
         double                        GetClearDepth() const;
         MultisampleDepthResolveFilter GetDepthResolveFilter() const MTLPP_AVAILABLE_IOS(9_0);
@@ -113,7 +113,7 @@ namespace mtlpp
     {
     public:
         RenderPassStencilAttachmentDescriptor();
-        RenderPassStencilAttachmentDescriptor(const ns::Handle& handle) : RenderPassAttachmentDescriptor(handle) { }
+        RenderPassStencilAttachmentDescriptor(const ns::RetainedHandle& handle) : RenderPassAttachmentDescriptor(handle) { }
 
         uint32_t GetClearStencil() const;
 
@@ -125,7 +125,7 @@ namespace mtlpp
     {
     public:
         RenderPassDescriptor();
-        RenderPassDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPassDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::Array<RenderPassColorAttachmentDescriptor> GetColorAttachments() const;
         RenderPassDepthAttachmentDescriptor   GetDepthAttachment() const;

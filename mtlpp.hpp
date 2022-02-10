@@ -255,7 +255,7 @@ namespace mtlpp
     {
     public:
         CommandEncoder() { }
-        CommandEncoder(const ns::Handle& handle) : ns::Object(handle) { }
+        CommandEncoder(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         Device     GetDevice() const;
         ns::String GetLabel() const;
@@ -514,7 +514,7 @@ namespace mtlpp
     {
     public:
         Resource() { }
-        Resource(const ns::Handle& handle) : ns::Object(handle) { }
+        Resource(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String   GetLabel() const;
         CpuCacheMode GetCpuCacheMode() const;
@@ -553,7 +553,7 @@ namespace mtlpp
     {
     public:
         Buffer() { }
-        Buffer(const ns::Handle& handle) : Resource(handle) { }
+        Buffer(const ns::RetainedHandle& handle) : Resource(handle) { }
 
         uint32_t GetLength() const;
         void*    GetContents();
@@ -672,7 +672,7 @@ namespace mtlpp
     {
     public:
         TextureDescriptor();
-        TextureDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        TextureDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         static TextureDescriptor Texture2DDescriptor(PixelFormat pixelFormat, uint32_t width, uint32_t height, bool mipmapped);
         static TextureDescriptor TextureCubeDescriptor(PixelFormat pixelFormat, uint32_t size, bool mipmapped);
@@ -709,7 +709,7 @@ namespace mtlpp
     {
     public:
         Texture() { }
-        Texture(const ns::Handle& handle) : Resource(handle) { }
+        Texture(const ns::RetainedHandle& handle) : Resource(handle) { }
 
         Resource     GetRootResource() const MTLPP_DEPRECATED(10_11, 10_12, 8_0, 10_0);
         Texture      GetParentTexture() const MTLPP_AVAILABLE(10_11, 9_0);
@@ -868,7 +868,7 @@ namespace mtlpp
     {
     public:
         StructMember();
-        StructMember(const ns::Handle& handle) : ns::Object(handle) { }
+        StructMember(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetName() const;
         uint32_t   GetOffset() const;
@@ -883,7 +883,7 @@ namespace mtlpp
     {
     public:
         StructType();
-        StructType(const ns::Handle& handle) : ns::Object(handle) { }
+        StructType(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         const ns::Array<StructMember> GetMembers() const;
         StructMember                  GetMember(const ns::String& name) const;
@@ -894,7 +894,7 @@ namespace mtlpp
     {
     public:
         ArrayType();
-        ArrayType(const ns::Handle& handle) : ns::Object(handle) { }
+        ArrayType(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         uint32_t   GetArrayLength() const;
         DataType   GetElementType() const;
@@ -908,7 +908,7 @@ namespace mtlpp
     {
     public:
         PointerType();
-        PointerType(const ns::Handle& handle) : ns::Object(handle) { }
+        PointerType(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         uint32_t        GetAlignment() const;
         uint32_t        GetDataSize() const;
@@ -925,7 +925,7 @@ namespace mtlpp
     {
     public:
         Argument();
-        Argument(const ns::Handle& handle) : ns::Object(handle) { }
+        Argument(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String     GetName() const;
         ArgumentType   GetType() const;
@@ -983,7 +983,7 @@ namespace mtlpp
     {
     public:
         VertexAttribute();
-        VertexAttribute(const ns::Handle& handle) : ns::Object(handle) { }
+        VertexAttribute(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String   GetName() const;
         uint32_t     GetAttributeIndex() const;
@@ -998,7 +998,7 @@ namespace mtlpp
     {
     public:
         Attribute();
-        Attribute(const ns::Handle& handle) : ns::Object(handle) { }
+        Attribute(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String   GetName() const;
         uint32_t     GetAttributeIndex() const;
@@ -1021,7 +1021,7 @@ namespace mtlpp
     {
     public:
         FunctionConstant();
-        FunctionConstant(const ns::Handle& handle) : ns::Object(handle) { }
+        FunctionConstant(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetName() const;
         DataType   GetType() const;
@@ -1034,7 +1034,7 @@ namespace mtlpp
     {
     public:
         Function() { }
-        Function(const ns::Handle& handle) : ns::Object(handle) { }
+        Function(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String                                   GetLabel() const MTLPP_AVAILABLE(10_12, 10_0);
         Device                                       GetDevice() const;
@@ -1062,7 +1062,7 @@ namespace mtlpp
     {
     public:
         CompileOptions();
-        CompileOptions(const ns::Handle& handle) : ns::Object(handle) { }
+        CompileOptions(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::Dictionary<ns::String, ns::String> GetPreprocessorMacros() const;
         bool                                   IsFastMathEnabled() const;
@@ -1096,7 +1096,7 @@ namespace mtlpp
     {
     public:
         Library() { }
-        Library(const ns::Handle& handle) : ns::Object(handle) { }
+        Library(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String            GetLabel() const;
         Device                GetDevice() const;
@@ -1197,7 +1197,7 @@ namespace mtlpp
     {
     public:
         Device() { }
-        Device(const ns::Handle& handle) : ns::Object(handle) { }
+        Device(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         static Device CreateSystemDefaultDevice() MTLPP_AVAILABLE(10_11, 8_0);
         static ns::Array<Device> CopyAllDevices() MTLPP_AVAILABLE(10_11, NA);
@@ -1264,7 +1264,7 @@ namespace mtlpp
     {
     public:
         Fence() { }
-        Fence(const ns::Handle& handle) : ns::Object(handle) { }
+        Fence(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         Texture    GetDevice() const;
         ns::String GetLabel() const;
@@ -1305,7 +1305,7 @@ namespace mtlpp
     {
     public:
         BlitCommandEncoder() { }
-        BlitCommandEncoder(const ns::Handle& handle) : CommandEncoder(handle) { }
+        BlitCommandEncoder(const ns::RetainedHandle& handle) : CommandEncoder(handle) { }
 
         void Synchronize(const Resource& resource) MTLPP_AVAILABLE_MAC(10_11);
         void Synchronize(const Texture& texture, uint32_t slice, uint32_t level) MTLPP_AVAILABLE_MAC(10_11);
@@ -1383,7 +1383,7 @@ namespace mtlpp
     {
     public:
         CommandBuffer() { }
-        CommandBuffer(const ns::Handle& handle) : ns::Object(handle) { }
+        CommandBuffer(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         Device              GetDevice() const;
         CommandQueue        GetCommandQueue() const;
@@ -1439,7 +1439,7 @@ namespace mtlpp
     {
     public:
         ComputeCommandEncoder() { }
-        ComputeCommandEncoder(const ns::Handle& handle) : CommandEncoder(handle) { }
+        ComputeCommandEncoder(const ns::RetainedHandle& handle) : CommandEncoder(handle) { }
 
         void SetComputePipelineState(const ComputePipelineState& state);
         void SetBytes(const void* data, uint32_t length, uint32_t index);
@@ -1484,7 +1484,7 @@ namespace mtlpp
     {
     public:
         CommandQueue() { }
-        CommandQueue(const ns::Handle& handle) : ns::Object(handle) { }
+        CommandQueue(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetLabel() const;
         Device     GetDevice() const;
@@ -1544,7 +1544,7 @@ namespace mtlpp
     {
     public:
         StencilDescriptor();
-        StencilDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        StencilDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         CompareFunction  GetStencilCompareFunction() const;
         StencilOperation GetStencilFailureOperation() const;
@@ -1566,7 +1566,7 @@ namespace mtlpp
     {
     public:
         DepthStencilDescriptor();
-        DepthStencilDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        DepthStencilDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         CompareFunction   GetDepthCompareFunction() const;
         bool              IsDepthWriteEnabled() const;
@@ -1586,7 +1586,7 @@ namespace mtlpp
     {
     public:
         DepthStencilState() { }
-        DepthStencilState(const ns::Handle& handle) : ns::Object(handle) { }
+        DepthStencilState(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetLabel() const;
         Device     GetDevice() const;
@@ -1613,7 +1613,7 @@ namespace mtlpp
     {
     public:
         Drawable() { }
-        Drawable(const ns::Handle& handle) : ns::Object(handle) { }
+        Drawable(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         double   GetPresentedTime() const MTLPP_AVAILABLE_IOS(10_3);
         uint64_t GetDrawableID() const MTLPP_AVAILABLE_IOS(10_3);
@@ -1689,7 +1689,7 @@ namespace mtlpp
     {
     public:
         RenderPassAttachmentDescriptor();
-        RenderPassAttachmentDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPassAttachmentDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         Texture     GetTexture() const;
         uint32_t    GetLevel() const;
@@ -1719,7 +1719,7 @@ namespace mtlpp
     {
     public:
         RenderPassColorAttachmentDescriptor();
-        RenderPassColorAttachmentDescriptor(const ns::Handle& handle) : RenderPassAttachmentDescriptor(handle) { }
+        RenderPassColorAttachmentDescriptor(const ns::RetainedHandle& handle) : RenderPassAttachmentDescriptor(handle) { }
 
         ClearColor GetClearColor() const;
 
@@ -1731,7 +1731,7 @@ namespace mtlpp
     {
     public:
         RenderPassDepthAttachmentDescriptor();
-        RenderPassDepthAttachmentDescriptor(const ns::Handle& handle) : RenderPassAttachmentDescriptor(handle) { }
+        RenderPassDepthAttachmentDescriptor(const ns::RetainedHandle& handle) : RenderPassAttachmentDescriptor(handle) { }
 
         double                        GetClearDepth() const;
         MultisampleDepthResolveFilter GetDepthResolveFilter() const MTLPP_AVAILABLE_IOS(9_0);
@@ -1745,7 +1745,7 @@ namespace mtlpp
     {
     public:
         RenderPassStencilAttachmentDescriptor();
-        RenderPassStencilAttachmentDescriptor(const ns::Handle& handle) : RenderPassAttachmentDescriptor(handle) { }
+        RenderPassStencilAttachmentDescriptor(const ns::RetainedHandle& handle) : RenderPassAttachmentDescriptor(handle) { }
 
         uint32_t GetClearStencil() const;
 
@@ -1757,7 +1757,7 @@ namespace mtlpp
     {
     public:
         RenderPassDescriptor();
-        RenderPassDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPassDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::Array<RenderPassColorAttachmentDescriptor> GetColorAttachments() const;
         RenderPassDepthAttachmentDescriptor   GetDepthAttachment() const;
@@ -1876,7 +1876,7 @@ namespace mtlpp
     {
     public:
         BufferLayoutDescriptor();
-        BufferLayoutDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        BufferLayoutDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         uint32_t     GetStride() const;
         StepFunction GetStepFunction() const;
@@ -1892,7 +1892,7 @@ namespace mtlpp
     {
     public:
         AttributeDescriptor();
-        AttributeDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        AttributeDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         AttributeFormat GetFormat() const;
         uint32_t        GetOffset() const;
@@ -1908,7 +1908,7 @@ namespace mtlpp
     {
     public:
         StageInputOutputDescriptor();
-        StageInputOutputDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        StageInputOutputDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
 
         ns::Array<BufferLayoutDescriptor> GetLayouts() const;
@@ -1945,7 +1945,7 @@ namespace mtlpp
     {
     public:
         ComputePipelineReflection();
-        ComputePipelineReflection(const ns::Handle& handle) : ns::Object(handle) { }
+        ComputePipelineReflection(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::Array<Argument> GetArguments() const;
     }
@@ -1955,7 +1955,7 @@ namespace mtlpp
     {
     public:
         ComputePipelineDescriptor();
-        ComputePipelineDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        ComputePipelineDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String                 GetLabel() const;
         Function                   GetComputeFunction() const;
@@ -1975,7 +1975,7 @@ namespace mtlpp
     {
     public:
         ComputePipelineState() { }
-        ComputePipelineState(const ns::Handle& handle) : ns::Object(handle) { }
+        ComputePipelineState(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         Device   GetDevice() const;
         uint32_t GetMaxTotalThreadsPerThreadgroup() const;
@@ -2118,7 +2118,7 @@ namespace mtlpp
     {
     public:
         RenderCommandEncoder() { }
-        RenderCommandEncoder(const ns::Handle& handle) : CommandEncoder(handle) { }
+        RenderCommandEncoder(const ns::RetainedHandle& handle) : CommandEncoder(handle) { }
 
         void SetRenderPipelineState(const RenderPipelineState& pipelineState);
         void SetVertexData(const void* bytes, uint32_t length, uint32_t index) MTLPP_AVAILABLE(10_11, 8_3);
@@ -2198,7 +2198,7 @@ namespace mtlpp
     {
     public:
         FunctionConstantValues();
-        FunctionConstantValues(const ns::Handle& handle) : ns::Object(handle) { }
+        FunctionConstantValues(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         void SetConstantValue(const void* value, DataType type, uint32_t index);
         void SetConstantValue(const void* value, DataType type, const ns::String& name);
@@ -2321,7 +2321,7 @@ namespace mtlpp
     {
     public:
         RenderPipelineColorAttachmentDescriptor();
-        RenderPipelineColorAttachmentDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPipelineColorAttachmentDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         PixelFormat     GetPixelFormat() const;
         bool            IsBlendingEnabled() const;
@@ -2349,7 +2349,7 @@ namespace mtlpp
     {
     public:
         RenderPipelineReflection();
-        RenderPipelineReflection(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPipelineReflection(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         const ns::Array<Argument> GetVertexArguments() const;
         const ns::Array<Argument> GetFragmentArguments() const;
@@ -2360,7 +2360,7 @@ namespace mtlpp
     {
     public:
         RenderPipelineDescriptor();
-        RenderPipelineDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPipelineDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String                                         GetLabel() const;
         Function                                           GetVertexFunction() const;
@@ -2410,7 +2410,7 @@ namespace mtlpp
     {
     public:
         RenderPipelineState() { }
-        RenderPipelineState(const ns::Handle& handle) : ns::Object(handle) { }
+        RenderPipelineState(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetLabel() const;
         Device     GetDevice() const;
@@ -2507,7 +2507,7 @@ namespace mtlpp
     {
     public:
         VertexBufferLayoutDescriptor();
-        VertexBufferLayoutDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        VertexBufferLayoutDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         uint32_t           GetStride() const;
         VertexStepFunction GetStepFunction() const;
@@ -2523,7 +2523,7 @@ namespace mtlpp
     {
     public:
         VertexAttributeDescriptor();
-        VertexAttributeDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        VertexAttributeDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         VertexFormat GetFormat() const;
         uint32_t     GetOffset() const;
@@ -2539,7 +2539,7 @@ namespace mtlpp
     {
     public:
         VertexDescriptor();
-        VertexDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        VertexDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::Array<VertexBufferLayoutDescriptor> GetLayouts() const;
         ns::Array<VertexAttributeDescriptor>    GetAttributes() const;
@@ -2572,7 +2572,7 @@ namespace mtlpp
     {
     public:
         ParallelRenderCommandEncoder() { }
-        ParallelRenderCommandEncoder(const ns::Handle& handle) : ns::Object(handle) { }
+        ParallelRenderCommandEncoder(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         RenderCommandEncoder GetRenderCommandEncoder();
 
@@ -2637,7 +2637,7 @@ namespace mtlpp
     {
     public:
         SamplerDescriptor();
-        SamplerDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        SamplerDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         SamplerMinMagFilter GetMinFilter() const;
         SamplerMinMagFilter GetMagFilter() const;
@@ -2673,7 +2673,7 @@ namespace mtlpp
     {
     public:
         SamplerState() { }
-        SamplerState(const ns::Handle& handle) : ns::Object(handle) { }
+        SamplerState(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetLabel() const;
         Device     GetDevice() const;
@@ -2706,7 +2706,7 @@ namespace mtlpp
     {
     public:
         HeapDescriptor();
-        HeapDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        HeapDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         uint32_t     GetSize() const;
         StorageMode  GetStorageMode() const;
@@ -2722,7 +2722,7 @@ namespace mtlpp
     {
     public:
         Heap() {}
-        Heap(const ns::Handle& handle) : ns::Object(handle) { }
+        Heap(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String   GetLabel() const;
         Device       GetDevice() const;
@@ -2768,7 +2768,7 @@ namespace mtlpp
     {
     public:
         CaptureScope() { }
-        CaptureScope(const ns::Handle& handle) : ns::Object(handle) { }
+        CaptureScope(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         void Begin();
         void End();
@@ -2783,7 +2783,7 @@ namespace mtlpp
     {
     public:
         CaptureDescriptor() { }
-        CaptureDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        CaptureDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         void SetCaptureObject(const ns::Object & obj);
         void SetCaptureDevice(const Device & device);
@@ -2798,7 +2798,7 @@ namespace mtlpp
     {
     public:
         CaptureManager() { }
-        CaptureManager(const ns::Handle& handle) : ns::Object(handle) { }
+        CaptureManager(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         static CaptureManager GetShared();
 

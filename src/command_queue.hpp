@@ -17,7 +17,7 @@ namespace mtlpp
     {
     public:
         CommandQueue() { }
-        CommandQueue(const ns::Handle& handle) : ns::Object(handle) { }
+        CommandQueue(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetLabel() const;
         Device     GetDevice() const;

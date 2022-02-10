@@ -10,6 +10,7 @@
 #include "pixel_format.hpp"
 #include "resource.hpp"
 #include "library.hpp"
+#include "counter.hpp"
 
 namespace mtlpp
 {
@@ -38,6 +39,7 @@ namespace mtlpp
     class ComputePipelineReflection;
     class CommandQueueDescriptor;
     class HeapDescriptor;
+    class CounterSet;
 
     enum class FeatureSet
     {
@@ -81,7 +83,7 @@ namespace mtlpp
     {
     public:
         Device() { }
-        Device(const ns::Handle& handle) : ns::Object(handle) { }
+        Device(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         static Device CreateSystemDefaultDevice() MTLPP_AVAILABLE(10_11, 8_0);
         static ns::Array<Device> CopyAllDevices() MTLPP_AVAILABLE(10_11, NA);
@@ -123,6 +125,7 @@ namespace mtlpp
         Fence NewFence() MTLPP_AVAILABLE(NA, 10_0);
         bool SupportsFeatureSet(FeatureSet featureSet) const;
         bool SupportsTextureSampleCount(uint32_t sampleCount) const MTLPP_AVAILABLE(10_11, 9_0);
+        ns::Array<CounterSet> counterSets() const MTLPP_AVAILABLE(10_15, 14_0);
     }
     MTLPP_AVAILABLE(10_11, 8_0);
 }

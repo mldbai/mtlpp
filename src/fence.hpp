@@ -16,7 +16,7 @@ namespace mtlpp
     {
     public:
         Fence() { }
-        Fence(const ns::Handle& handle) : ns::Object(handle) { }
+        Fence(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         Texture    GetDevice() const;
         ns::String GetLabel() const;

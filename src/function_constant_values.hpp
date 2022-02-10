@@ -15,7 +15,7 @@ namespace mtlpp
     {
     public:
         FunctionConstantValues();
-        FunctionConstantValues(const ns::Handle& handle) : ns::Object(handle) { }
+        FunctionConstantValues(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         void SetConstantValue(const void* value, DataType type, uint32_t index);
         void SetConstantValue(const void* value, DataType type, const ns::String& name);

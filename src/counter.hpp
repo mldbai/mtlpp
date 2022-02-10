@@ -66,7 +66,7 @@ namespace mtlpp
     {
     public:
         Counter() { }
-        Counter(const ns::Handle& handle) : ns::Object(handle) { }
+        Counter(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String Name() const;
     }
@@ -76,7 +76,7 @@ namespace mtlpp
     {
     public:
         CounterSet() { }
-        CounterSet(const ns::Handle& handle) : ns::Object(handle) { }
+        CounterSet(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String Name() const;
         ns::Array<Counter> Counters() const;

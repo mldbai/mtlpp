@@ -19,7 +19,7 @@ private:
     {
     public:
         MtlView() { }
-        MtlView(const ns::Handle& handle) : ns::Object(handle) { }
+        MtlView(const ns::RetainedHandle& handle) : ns::Object(handle) { }
     };
 
     MtlView m_view;

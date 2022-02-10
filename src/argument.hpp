@@ -122,7 +122,7 @@ namespace mtlpp
     {
     public:
         StructMember();
-        StructMember(const ns::Handle& handle) : ns::Object(handle) { }
+        StructMember(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetName() const;
         uint32_t   GetOffset() const;
@@ -137,7 +137,7 @@ namespace mtlpp
     {
     public:
         StructType();
-        StructType(const ns::Handle& handle) : ns::Object(handle) { }
+        StructType(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         const ns::Array<StructMember> GetMembers() const;
         StructMember                  GetMember(const ns::String& name) const;
@@ -148,7 +148,7 @@ namespace mtlpp
     {
     public:
         ArrayType();
-        ArrayType(const ns::Handle& handle) : ns::Object(handle) { }
+        ArrayType(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         uint32_t   GetArrayLength() const;
         DataType   GetElementType() const;
@@ -162,7 +162,7 @@ namespace mtlpp
     {
     public:
         PointerType();
-        PointerType(const ns::Handle& handle) : ns::Object(handle) { }
+        PointerType(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         uint32_t        GetAlignment() const;
         uint32_t        GetDataSize() const;
@@ -179,7 +179,7 @@ namespace mtlpp
     {
     public:
         Argument();
-        Argument(const ns::Handle& handle) : ns::Object(handle) { }
+        Argument(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String     GetName() const;
         ArgumentType   GetType() const;

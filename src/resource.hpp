@@ -62,7 +62,9 @@ namespace mtlpp
     {
     public:
         Resource() { }
-        Resource(const ns::Handle& handle) : ns::Object(handle) { }
+        Resource(const ns::RetainedHandle& handle) : ns::Object(handle) { }
+
+        virtual ~Resource() = default;
 
         ns::String   GetLabel() const;
         CpuCacheMode GetCpuCacheMode() const;

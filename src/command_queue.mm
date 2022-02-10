@@ -31,13 +31,13 @@ namespace mtlpp
     CommandBuffer CommandQueue::CommandBufferWithUnretainedReferences()
     {
         Validate();
-        return ns::Handle { (__bridge void*)[(__bridge id<MTLCommandQueue>)m_ptr commandBufferWithUnretainedReferences] };
+        return ns::RetainedHandle { (__bridge void*)[(__bridge id<MTLCommandQueue>)m_ptr commandBufferWithUnretainedReferences] };
     }
 
     CommandBuffer CommandQueue::CommandBuffer()
     {
         Validate();
-        return ns::Handle { (__bridge void*)[(__bridge id<MTLCommandQueue>)m_ptr commandBuffer] };
+        return ns::RetainedHandle { (__bridge void*)[(__bridge id<MTLCommandQueue>)m_ptr commandBuffer] };
     }
 
     void CommandQueue::InsertDebugCaptureBoundary()

@@ -128,7 +128,7 @@ namespace mtlpp
     {
     public:
         RenderCommandEncoder() { }
-        RenderCommandEncoder(const ns::Handle& handle) : CommandEncoder(handle) { }
+        RenderCommandEncoder(const ns::RetainedHandle& handle) : CommandEncoder(handle) { }
 
         void SetRenderPipelineState(const RenderPipelineState& pipelineState);
         void SetVertexData(const void* bytes, uint32_t length, uint32_t index) MTLPP_AVAILABLE(10_11, 8_3);

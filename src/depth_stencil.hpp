@@ -41,7 +41,7 @@ namespace mtlpp
     {
     public:
         StencilDescriptor();
-        StencilDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        StencilDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         CompareFunction  GetStencilCompareFunction() const;
         StencilOperation GetStencilFailureOperation() const;
@@ -63,7 +63,7 @@ namespace mtlpp
     {
     public:
         DepthStencilDescriptor();
-        DepthStencilDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        DepthStencilDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         CompareFunction   GetDepthCompareFunction() const;
         bool              IsDepthWriteEnabled() const;
@@ -83,7 +83,7 @@ namespace mtlpp
     {
     public:
         DepthStencilState() { }
-        DepthStencilState(const ns::Handle& handle) : ns::Object(handle) { }
+        DepthStencilState(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetLabel() const;
         Device     GetDevice() const;

@@ -48,7 +48,7 @@ namespace mtlpp
     {
     public:
         SamplerDescriptor();
-        SamplerDescriptor(const ns::Handle& handle) : ns::Object(handle) { }
+        SamplerDescriptor(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         SamplerMinMagFilter GetMinFilter() const;
         SamplerMinMagFilter GetMagFilter() const;
@@ -84,7 +84,7 @@ namespace mtlpp
     {
     public:
         SamplerState() { }
-        SamplerState(const ns::Handle& handle) : ns::Object(handle) { }
+        SamplerState(const ns::RetainedHandle& handle) : ns::Object(handle) { }
 
         ns::String GetLabel() const;
         Device     GetDevice() const;

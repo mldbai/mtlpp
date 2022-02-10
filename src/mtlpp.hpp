@@ -26,3 +26,5 @@
 #include "texture.hpp"
 #include "heap.hpp"
 #include "capture.hpp"
+#include "counter.hpp"
+
